@@ -1,4 +1,4 @@
 @includeFirst([
-    "video-repeater::video-platforms.$platform",
-    "video-repeater::video-platforms.default",
+    "video-repeater::platforms.$platform",
+    "video-repeater::platforms.default",
 ])

@@ -22,4 +22,4 @@ public function types(Request $request)
 
 ## Platform
 
-You can add new platforms by adding new templates to the `/views/vendor/video-repeater/video-platforms` resource folder. The system will fallback to the default style if a view is not found.
+You can add new platforms by adding new templates to the `/views/vendor/video-repeater/platforms` resource folder. The system will fallback to the default style if a view is not found.

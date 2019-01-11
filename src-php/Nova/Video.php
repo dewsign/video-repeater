@@ -63,8 +63,8 @@ class Video extends Resource
 
     private static function availableTemplates()
     {
-        $packageTemplatePath = __DIR__ . '/../Resources/views/video-platforms';
-        $appTemplatePath = resource_path() . '/views/vendor/video-repeater/video-platforms';
+        $packageTemplatePath = __DIR__ . '/../Resources/views/platforms';
+        $appTemplatePath = resource_path() . '/views/vendor/video-repeater/platforms';
 
         $packageTemplates = File::exists($packageTemplatePath) ? File::files($packageTemplatePath) : null;
         $appTemplates = File::exists($appTemplatePath) ? File::files($appTemplatePath) : null;
