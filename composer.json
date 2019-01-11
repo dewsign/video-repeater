@@ -1,0 +1,33 @@
+{
+    "name": "dewsign/video-repeater",
+    "description": "A video repeater block for [Dewsign's Nova Repeater Blocks](https://github.com/dewsign/nova-repeater-blocks) to output a video from a specific platform",
+    "type": "boilerplate",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Daniel Crewdson",
+            "email": "danielcrewdson@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+        "laravel/framework": ">=5.0.0",
+        "laravel/nova": "^1.1",
+        "dewsign/nova-repeater-blocks": "^1.1"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": ">=3.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dewsign\\VideoRepeater\\": "src-php/"
+        }
+    },
+    "extra":{
+        "laravel": {
+            "providers": [
+                "Dewsign\\VideoRepeater\\Providers\\PackageServiceProvider"
+            ]
+        }
+    }
+}
