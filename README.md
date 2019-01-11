@@ -1,29 +1,25 @@
-# Gallery Repeater Block
+# Video Repeater Block
 
-A gallery repeater block for [Dewsign's Nova Repeater Blocks](https://github.com/dewsign/nova-repeater-blocks) to output a collection of images
+A video repeater block for [Dewsign's Nova Repeater Blocks](https://github.com/dewsign/nova-repeater-blocks) to output a a video from a specific platform.
 
 ## Installation & Usage
 
-`composer require dewsign/gallery-repeater`
+`composer require dewsign/video-repeater`
 
 `php artisan migrate`
 
-Within your repeater types add the Gallery
+Within your repeater types add the Video
 
 ```php{5}
 public function types(Request $request)
     {
         return [
             ...
-            Dewsign\GalleryRepeater\Nova\Gallery::class,
+            Dewsign\VideoRepeater\Nova\Video::class,
         ];
     }
 ```
 
-## Styles
+## Platform
 
-You can create multiple gallery and item styles by adding new templates to the `/views/vendor/gallery-repeater/galleries` and `/views/vendor/gallery-repeater/items` resource folders. The system will fallback to the default style if a view is not found.
-
-## Image Procesing
-
-The config provides an easy way to customise the Image Processor. Create a new class with a compatible `get` method which can return the processed image url. Each Item template can have a unique image processor. Some common template names are included but they all render the default template (typically sufficient when combined with the Image Processor).
+You can add new platforms by adding new templates to the `/views/vendor/video-repeater/video-platforms` resource folder. The system will fallback to the default style if a view is not found.
