@@ -19,4 +19,13 @@ class Video extends Model
         $mediaEmbed = new MediaEmbed();
         return $mediaEmbed->parseUrl($this->link)->stub('id');
     }
+
+    public function getRenderEmbedAttribute()
+    {
+        $mediaEmbed = new MediaEmbed();
+        return $mediaEmbed->parseUrl($this->link)
+            ->setWidth($this->width ?? '640')
+            ->setHeight($this->height ?? '360')
+            ->getEmbedCode();
+    }
 }

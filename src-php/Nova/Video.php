@@ -10,6 +10,7 @@ use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Markdown;
 use Illuminate\Support\Facades\File;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Dewsign\NovaRepeaterBlocks\Models\Repeater;
 use Dewsign\NovaRepeaterBlocks\Traits\IsRepeaterBlockResource;
 
 class Video extends Resource
@@ -48,7 +49,10 @@ class Video extends Resource
      */
     public function fields(Request $request)
     {
-        $options = static::availableTemplates();
+        $options = array_merge(
+            Repeater::customTemplates(__DIR__ . '/../Resources/views/platforms'),
+            Repeater::customTemplates(resource_path('/views/vendor/video-repeater/platforms'))
+        );
 
         return [
             Select::make('Platform')
@@ -59,71 +63,5 @@ class Video extends Resource
             Text::make('Width')->rules('nullable'),
             Text::make('Height')->rules('nullable'),
         ];
-    }
-
-    private static function availableTemplates()
-    {
-        $packageTemplatePath = __DIR__ . '/../Resources/views/platforms';
-        $appTemplatePath = resource_path() . '/views/vendor/video-repeater/platforms';
-
-        $packageTemplates = File::exists($packageTemplatePath) ? File::files($packageTemplatePath) : null;
-        $appTemplates = File::exists($appTemplatePath) ? File::files($appTemplatePath) : null;
-
-        return collect($packageTemplates)->merge($appTemplates)->mapWithKeys(function ($file) {
-            $filename = $file->getFilename();
-            return [
-                str_replace('.blade.php', '', $filename) => static::getPrettyFilename($filename),
-            ];
-        })->all();
-    }
-
-    private static function getPrettyFilename($filename)
-    {
-        $basename = str_replace('.blade.php', '', $filename);
-        return title_case(str_replace('-', ' ', $basename));
-    }
-
-    /**
-     * Get the cards available for the request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function cards(Request $request)
-    {
-        return [];
-    }
-
-    /**
-     * Get the filters available for the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function filters(Request $request)
-    {
-        return [];
-    }
-
-    /**
-     * Get the lenses available for the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function lenses(Request $request)
-    {
-        return [];
-    }
-
-    /**
-     * Get the actions available for the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function actions(Request $request)
-    {
-        return [];
     }
 }
