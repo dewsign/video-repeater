@@ -5,10 +5,12 @@ namespace Dewsign\VideoRepeater;
 use MediaEmbed\MediaEmbed;
 use Illuminate\Database\Eloquent\Model;
 use Dewsign\NovaRepeaterBlocks\Traits\IsRepeaterBlock;
+use Dewsign\NovaRepeaterBlocks\Traits\CanBeContainerised;
 
 class Video extends Model
 {
     use IsRepeaterBlock;
+    use CanBeContainerised;
 
     protected $table = 'nrb_videos';
 
