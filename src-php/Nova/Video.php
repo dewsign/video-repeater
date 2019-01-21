@@ -12,10 +12,12 @@ use Illuminate\Support\Facades\File;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Dewsign\NovaRepeaterBlocks\Models\Repeater;
 use Dewsign\NovaRepeaterBlocks\Traits\IsRepeaterBlockResource;
+use Dewsign\NovaRepeaterBlocks\Traits\ResourceCanBeContainerised;
 
 class Video extends Resource
 {
     use IsRepeaterBlockResource;
+    use ResourceCanBeContainerised;
 
     /**
      * The model the resource corresponds to.
