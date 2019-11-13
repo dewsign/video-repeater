@@ -3,12 +3,10 @@
 namespace Dewsign\VideoRepeater\Nova;
 
 use Laravel\Nova\Resource;
-use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\Select;
-use Laravel\Nova\Fields\Markdown;
-use Illuminate\Support\Facades\File;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Dewsign\NovaRepeaterBlocks\Models\Repeater;
 use Dewsign\NovaRepeaterBlocks\Traits\IsRepeaterBlockResource;
@@ -57,11 +55,13 @@ class Video extends Resource
         );
 
         return [
+            Text::make('Title')->rules('nullable'),
             Select::make('Platform')
                 ->options($options)
                 ->displayUsingLabels()
                 ->hideFromIndex(),
             Text::make('Link')->rules('required'),
+            Textarea::make('Description')->rules('nullable'),
             Text::make('Width')->rules('nullable'),
             Text::make('Height')->rules('nullable'),
         ];
